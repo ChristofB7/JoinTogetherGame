@@ -27,9 +27,8 @@ public class Player : MonoBehaviour
         //Vector3 playerMovement = new Vector3(hor, 0f, ver)*speed*Time.deltaTime;
         //playerBody.AddForce(playerMovement);
         
-        //WILL NEED TO CHANGE THIS ONCE THE MOVEMENT IS PURE GRAPPLING HOOK
-        playerBody.AddForce(target.transform.forward * ver);
-        playerBody.AddForce(target.transform.right * hor);
+        //playerBody.AddForce(target.transform.forward * ver);
+        //playerBody.AddForce(target.transform.right * hor);
 
 
 
