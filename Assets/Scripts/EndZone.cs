@@ -14,8 +14,15 @@ public class EndZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("We Hitting Good");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        if (other.tag == "Player" && other.transform.gameObject.layer == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            Debug.Log("Not you");
+        }
+
     }
 
     // Update is called once per frame

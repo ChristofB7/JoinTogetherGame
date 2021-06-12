@@ -80,7 +80,7 @@ public class GrapplingGun : MonoBehaviour
         }
         if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, moveableLayer))
         {
-            
+            Debug.Log(hit.transform.gameObject.name);
             myCam.gameObject.GetComponent<AudioListener>().enabled = false;
             
             hit.transform.gameObject.GetComponent<Moveable>().cam.gameObject.GetComponent<AudioListener>().enabled = true;

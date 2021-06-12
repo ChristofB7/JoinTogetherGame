@@ -17,8 +17,14 @@ public class CarController : MonoBehaviour
     public float groundRayLength = 0.5f;
     public Transform groundRayPoint;
 
+    public ParticleSystem[] dustTrail;
+    public float maxEmission = 25f;
+    private float emissionRate;
+
     private float speedInput, turnInput;
     private Vector3 offset;
+
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +36,21 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cam.enabled)
+        {
+            getInput();
+        }
+
+    }
+
+    private void getInput()
+    {
         speedInput = 0f;
-        if (Input.GetAxis("Vertical")>0)
+        if (Input.GetAxis("Vertical") > 0)
         {
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
-        }else if (Input.GetAxis("Vertical") < 0)
+        }
+        else if (Input.GetAxis("Vertical") < 0)
         {
             speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
         }
@@ -54,30 +70,48 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        grounded = false;
-        RaycastHit hit;
+        emissionRate = 0;
 
-        if(Physics.Raycast(groundRayPoint.position, -transform.up, out hit,groundRayLength,ground))
+        if (cam.enabled)
         {
-            grounded = true;
+            grounded = false;
+            RaycastHit hit;
 
-            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        }
-
-        if (grounded)
-        {
-            sphere.drag = dragOnGround;
-            if (Mathf.Abs(speedInput) > 0)
+            if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, ground))
             {
-                sphere.AddForce(transform.forward * speedInput);
+                grounded = true;
+
+                transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             }
+
+            
+
+            if (grounded)
+            {
+                sphere.drag = dragOnGround;
+                if (Mathf.Abs(speedInput) > 0)
+                {
+                    sphere.AddForce(transform.forward * speedInput);
+                    emissionRate = maxEmission;
+                }
+            }
+            else
+            {
+                sphere.drag = 0.1f;
+                sphere.AddForce(Vector3.up * -gravityForce * 100f);
+            }
+
+            foreach (ParticleSystem part in dustTrail)
+            {
+                var emissionModule = part.emission;
+                emissionModule.rateOverTime = emissionRate;
+            }
+
         }
         else
         {
-            sphere.drag = 0.1f;
-            sphere.AddForce(Vector3.up * -gravityForce*100f);
+            emissionRate = 0;
         }
-
 
     }
 }
