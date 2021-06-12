@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GrapplingGun : MonoBehaviour
 {
     private LineRenderer lr;
-    public Transform ballTip;
+    private Vector3 ballTip;
     private GameObject grappleObject;
     public LayerMask grappleLayer;
     public LayerMask movingLayer;
@@ -132,8 +132,9 @@ public class GrapplingGun : MonoBehaviour
 
     void DrawRope()
     {
+        ballTip = new Vector3(sphere.transform.position.x - 0.5f, sphere.transform.position.y, sphere.transform.position.z);
         if (!joint&&!drag) return;
-        lr.SetPosition(0, ballTip.position);
+        lr.SetPosition(0, ballTip);
         lr.SetPosition(1, grappleObject.transform.position);
     }
 

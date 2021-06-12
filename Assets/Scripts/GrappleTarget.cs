@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class GrappleTarget : MonoBehaviour
 {
 
     public GameObject sphere;
@@ -15,7 +15,6 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(sphere.transform.position.x, sphere.transform.position.y + 1.5f, 
-            sphere.transform.position.z);
+        transform.position = new Vector3(sphere.transform.position.x, sphere.transform.position.y + 0.5f, sphere.transform.position.z + 0.5f);
     }
 }
