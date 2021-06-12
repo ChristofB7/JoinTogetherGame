@@ -6,7 +6,7 @@ public class Dragging : MonoBehaviour
 {
     public GameObject objectAttachedTo;
     public float distance = 20f;
-    public float pullSpeed = 300f;
+    public float pullSpeed = 600f;
     public GameObject cam;
 
     private GameObject fake;

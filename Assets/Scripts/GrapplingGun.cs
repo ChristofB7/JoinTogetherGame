@@ -28,7 +28,6 @@ public class GrapplingGun : MonoBehaviour
     void Update()
     {
         float mwheel = Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log(mwheel);
         if (mwheel > 0 && joint)
         {
             joint.maxDistance *= 0.80f;
@@ -40,18 +39,16 @@ public class GrapplingGun : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(isGrappling == false)
-            {
-                isGrappling = true;
-                StartGrapple();
-            }
-            else
-            {
-                isGrappling = false;
-                StopGrapple();
-            }
-
+            if (isGrappling) { return; }
+            isGrappling = true;
+            StartGrapple();
         }
+        if(Input.GetMouseButtonDown(1))
+        {
+            isGrappling = false;
+            StopGrapple();
+        }
+
 
         if (drag)
         {
@@ -83,7 +80,9 @@ public class GrapplingGun : MonoBehaviour
         }
         if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, moveableLayer))
         {
+            
             myCam.gameObject.GetComponent<AudioListener>().enabled = false;
+            
             hit.transform.gameObject.GetComponent<Moveable>().cam.gameObject.GetComponent<AudioListener>().enabled = true;
             hit.transform.gameObject.GetComponent<Moveable>().cam.enabled = true;
             Drag(hit);

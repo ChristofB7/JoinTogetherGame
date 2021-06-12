@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdPersonCamera : MonoBehaviour
+public class CartCamera : MonoBehaviour
 {
     public float rotationSpeed = 1;
     public float zoomSpeed = 1;
@@ -10,6 +10,9 @@ public class ThirdPersonCamera : MonoBehaviour
     float mouseX, mouseY;
     public Transform obstruction;
     public LayerMask cameraLayer;
+    private int cameraMode = 0;
+    public Transform sphere;
+    public Transform car;
 
 
 
@@ -22,23 +25,48 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 4.5f);
         CamControl();
         ViewObstructed();
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Debug.Log(cameraMode);
+            cameraMode = (cameraMode + 1) % 3;
+            /*if(cameraMode == 1)
+            {
+                target.LookAt(car.forward);
+                mouseX = target.eulerAngles.x;
+            }*/
+        }
     }
 
     void CamControl()
     {
-        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
-        mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
-        mouseY = Mathf.Clamp(mouseY, -90, 90);
+        if (cameraMode == 0)
+        {
+            mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+            mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        }
+        if (cameraMode == 1)
+        {
+            target.rotation = car.rotation;
+        }
 
+
+        mouseY = Mathf.Clamp(mouseY, -90, 90);
         transform.LookAt(target);
 
-        target.rotation = Quaternion.Euler(mouseY, mouseX, 0f);
-        
+        if (cameraMode == 0)
+        {
+            target.rotation = Quaternion.Euler(mouseY, mouseX, 0f);
+        }
+        if(cameraMode==2)
+        {
+            target.LookAt(sphere);
+        }
+
     }
 
     void ViewObstructed()
