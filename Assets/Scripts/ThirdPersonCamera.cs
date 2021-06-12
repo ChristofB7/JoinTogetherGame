@@ -22,8 +22,9 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        //transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 4.5f);
         CamControl();
         ViewObstructed();
     }
