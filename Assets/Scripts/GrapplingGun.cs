@@ -27,7 +27,7 @@ public class GrapplingGun : MonoBehaviour
     }
     void Update()
     {
-        float mwheel = Input.GetAxis("Mouse ScrollWheel");
+        /*float mwheel = Input.GetAxis("Mouse ScrollWheel");
         if (mwheel > 0 && joint)
         {
             joint.maxDistance *= 0.80f;
@@ -35,7 +35,7 @@ public class GrapplingGun : MonoBehaviour
         if(mwheel < 0 && joint)
         {
             joint.maxDistance *= 1.20f;
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,15 +69,15 @@ public class GrapplingGun : MonoBehaviour
     void StartGrapple()
     {
         RaycastHit hit;
-        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, grappleLayer))
+/*        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, grappleLayer))
         {
             Hook(hit);
-        }
-        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, movingLayer))
+        }*/
+/*        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, movingLayer))
         {
             Drag(hit);
 
-        }
+        }*/
         if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, moveableLayer))
         {
             myCam.gameObject.GetComponent<AudioListener>().enabled = false;
@@ -86,6 +86,13 @@ public class GrapplingGun : MonoBehaviour
             hit.transform.gameObject.GetComponent<Moveable>().cam.enabled = true;
             Drag(hit);
 
+        }
+        else
+        {
+            Debug.Log("Why am I grabbing something?");
+            isGrappling = false;
+            StopGrapple();
+            
         }
     }
 
@@ -104,7 +111,7 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    private void Hook(RaycastHit hit)
+    /*private void Hook(RaycastHit hit)
     {
         grappleObject = hit.transform.gameObject;
         if (!sphere.GetComponent<SpringJoint>())
@@ -126,7 +133,7 @@ public class GrapplingGun : MonoBehaviour
 
         lr.positionCount = 2;
     }
-
+*/
     void DrawRope()
     {
         ballTip = new Vector3(sphere.transform.position.x - 0.5f, sphere.transform.position.y, sphere.transform.position.z);
@@ -138,7 +145,7 @@ public class GrapplingGun : MonoBehaviour
     void StopGrapple()
     {
         lr.positionCount = 0;
-        Destroy(joint);
+        //Destroy(joint);
         Destroy(drag);
     }
 }

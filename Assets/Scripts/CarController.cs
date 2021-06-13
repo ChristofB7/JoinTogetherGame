@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarController : MonoBehaviour
-{
+public class CarController : MonoBehaviour {
     public Rigidbody sphere;
 
     public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180f, gravityForce = 10f, dragOnGround = 3f;
@@ -36,11 +35,21 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+            getInput();
+
+    }
+
+    float getCamEnabled()
+    {
         if (cam.enabled)
         {
-            getInput();
+            return 1f;
         }
-
+        else
+        {
+            return 0f;
+        }
     }
 
     private void getInput()
@@ -58,7 +67,7 @@ public class CarController : MonoBehaviour
         turnInput = Input.GetAxis("Horizontal");
         if (grounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical")*getCamEnabled(), 0f));
         }
 
         LFWheel.localRotation = Quaternion.Euler(LFWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) - 180, LFWheel.localRotation.eulerAngles.z);
@@ -72,45 +81,37 @@ public class CarController : MonoBehaviour
     {
         emissionRate = 0;
 
-        if (cam.enabled)
+        grounded = false;
+        RaycastHit hit;
+
+        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, ground))
         {
-            grounded = false;
-            RaycastHit hit;
+            grounded = true;
 
-            if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, ground))
+            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        }
+
+
+
+        if (grounded && cam.enabled)
+        {
+            sphere.drag = dragOnGround;
+            if (Mathf.Abs(speedInput) > 0)
             {
-                grounded = true;
-
-                transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+                sphere.AddForce(transform.forward * speedInput);
+                emissionRate = maxEmission;
             }
-
-            
-
-            if (grounded)
-            {
-                sphere.drag = dragOnGround;
-                if (Mathf.Abs(speedInput) > 0)
-                {
-                    sphere.AddForce(transform.forward * speedInput);
-                    emissionRate = maxEmission;
-                }
-            }
-            else
-            {
-                sphere.drag = 0.1f;
-                sphere.AddForce(Vector3.up * -gravityForce * 100f);
-            }
-
-            foreach (ParticleSystem part in dustTrail)
-            {
-                var emissionModule = part.emission;
-                emissionModule.rateOverTime = emissionRate;
-            }
-
         }
         else
         {
-            emissionRate = 0;
+            sphere.drag = 0.1f;
+            sphere.AddForce(Vector3.up * -gravityForce * 100f);
+        }
+
+        foreach (ParticleSystem part in dustTrail)
+        {
+            var emissionModule = part.emission;
+            emissionModule.rateOverTime = emissionRate;
         }
 
     }
