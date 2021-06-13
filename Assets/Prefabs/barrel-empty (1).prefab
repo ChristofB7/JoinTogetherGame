@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 288638874973280391}
   - component: {fileID: 288638874974411335}
   - component: {fileID: 61445289625513956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: barrel-empty (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288638874972144775}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -109.62, y: -2.35, z: 39.6276}
   m_LocalScale: {x: 5.940255, y: 2.021856, z: 5.940255}
   m_Children:
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f96859c39c8b30742b1c857216aa0777, type: 2}
+  - {fileID: 2100000, guid: 1b8b6301f6fc7be499355ed9f9dfd94a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -33,12 +33,7 @@ public class CartCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Debug.Log(cameraMode);
-            cameraMode = (cameraMode + 1) % 3;
-            /*if(cameraMode == 1)
-            {
-                target.LookAt(car.forward);
-                mouseX = target.eulerAngles.x;
-            }*/
+            cameraMode = (cameraMode + 1) % 2;
         }
     }
 
@@ -49,10 +44,10 @@ public class CartCamera : MonoBehaviour
             mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
             mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
         }
-        if (cameraMode == 1)
+        /*if (cameraMode == 1)
         {
             target.rotation = car.rotation;
-        }
+        }*/
 
 
         mouseY = Mathf.Clamp(mouseY, -90, 90);
@@ -62,7 +57,7 @@ public class CartCamera : MonoBehaviour
         {
             target.rotation = Quaternion.Euler(mouseY, mouseX, 0f);
         }
-        if(cameraMode==2)
+        if(cameraMode==1)
         {
             target.LookAt(sphere);
         }

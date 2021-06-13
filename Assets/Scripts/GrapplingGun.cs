@@ -142,7 +142,6 @@ public class GrapplingGun : MonoBehaviour
         lr.positionCount = 0;
         Destroy(joint);
         Destroy(drag);
-        Debug.Log(joint);
     }
 }
 

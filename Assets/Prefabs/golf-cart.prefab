@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphere: {fileID: 1213993988399228147}
-  forwardAccel: 8
+  forwardAccel: 4
   reverseAccel: 4
   maxSpeed: 50
   turnStrength: 180
