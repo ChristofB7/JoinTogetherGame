@@ -8,6 +8,7 @@ public class Settings : MonoBehaviour
 {
     public Slider music;
     public Slider SFX;
+    public Slider sens;
     public AudioMixer audioMixer;
 
     public void SetMusic (float volume)
@@ -28,8 +29,10 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         music.value = PlayerPrefs.GetFloat("Music");
         SFX.value = PlayerPrefs.GetFloat("SFX");
+        sens.value = PlayerPrefs.GetFloat("sens");
     }
 
     // Update is called once per frame
