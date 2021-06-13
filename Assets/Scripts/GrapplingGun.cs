@@ -90,10 +90,8 @@ public class GrapplingGun : MonoBehaviour
         }
         else
         {
-            Debug.Log("Why am I grabbing something?");
             isGrappling = false;
             StopGrapple();
-            
         }
     }
 
