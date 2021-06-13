@@ -57,13 +57,17 @@ public class CarController : MonoBehaviour {
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
-            //TODO: Cart Noise
+            //FindObjectOfType<audio>().PlayDrive();
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
         }
         else if (Input.GetAxis("Vertical") < 0)
         {
-            //TODO: Cart Noise
+            //FindObjectOfType<audio>().PlayDrive();
             speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
+        }
+        else
+        {
+            //FindObjectOfType<audio>().Stop();
         }
 
         turnInput = Input.GetAxis("Horizontal");

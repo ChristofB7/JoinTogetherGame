@@ -79,7 +79,7 @@ public class GrapplingGun : MonoBehaviour
         }*/
         if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, movingLayer))
         {
-            //TODO: Hit Sound
+            FindObjectOfType<audio>().PlayHit();
             Drag(hit);
 
         }
@@ -89,13 +89,13 @@ public class GrapplingGun : MonoBehaviour
             
             hit.transform.gameObject.GetComponent<Moveable>().cam.gameObject.GetComponent<AudioListener>().enabled = true;
             hit.transform.gameObject.GetComponent<Moveable>().cam.enabled = true;
-            //TODO: Hit Sound
+            FindObjectOfType<audio>().PlayHit();
             Drag(hit);
 
         }
         else
         {
-            //TODO: Miss sound
+            FindObjectOfType<audio>().PlayMiss();
             isGrappling = false;
             StopGrapple();
         }
@@ -149,7 +149,7 @@ public class GrapplingGun : MonoBehaviour
 
     void StopGrapple()
     {
-        //TODO Let go sound
+        FindObjectOfType<audio>().PlayLetGo();
         lr.positionCount = 0;
         //Destroy(joint);
         Destroy(drag);

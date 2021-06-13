@@ -6,23 +6,38 @@ using UnityEngine.SceneManagement;
 public class audio : MonoBehaviour
 {
 
-    public AudioClip dragHit;
-    public AudioClip dragDrop;
-    public AudioClip dragMiss;
-    public AudioClip drive;
-    public AudioClip menu;
-    public AudioClip level;
+    public AudioClip Hit;
+    public AudioClip LetGo;
+    public AudioClip Miss;
+    public AudioClip Drive;
+
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 2)
-        {
-            //TODO: Play level music
-        }
-        else
-        {
-            //TODO Play Menu Music
-        }
+        source = GetComponent<AudioSource>();
+    }
+
+    public void PlayHit()
+    {
+        source.PlayOneShot(Hit);
+    }
+    public void PlayLetGo()
+    {
+        source.PlayOneShot(LetGo);
+    }
+    public void PlayMiss()
+    {
+        source.PlayOneShot(Miss);
+    }
+    public void PlayDrive()
+    {
+        source.clip = Drive;
+        source.Play();
+    }
+    public void Stop()
+    {
+        source.Stop();
     }
 
     // Update is called once per frame
