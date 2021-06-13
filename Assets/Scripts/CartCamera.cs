@@ -32,7 +32,6 @@ public class CartCamera : MonoBehaviour
         ViewObstructed();
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Debug.Log(cameraMode);
             cameraMode = (cameraMode + 1) % 2;
         }
     }

@@ -13,7 +13,6 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("We Hitting Good");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

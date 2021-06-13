@@ -18,10 +18,6 @@ public class EndZone : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else
-        {
-            Debug.Log("Not you");
-        }
 
     }
 
