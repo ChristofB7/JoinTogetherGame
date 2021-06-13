@@ -57,10 +57,12 @@ public class CarController : MonoBehaviour {
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
+            //TODO: Cart Noise
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
         }
         else if (Input.GetAxis("Vertical") < 0)
         {
+            //TODO: Cart Noise
             speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
         }
 

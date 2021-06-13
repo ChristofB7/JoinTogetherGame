@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CartCamera : MonoBehaviour
 {
-    public float rotationSpeed = 1;
+    public float rotationSpeed;
     public float zoomSpeed = 1;
     public Transform target;
     float mouseX, mouseY;
@@ -22,6 +22,7 @@ public class CartCamera : MonoBehaviour
         //obstruction = target;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        rotationSpeed = PlayerPrefs.GetFloat("sens");
     }
 
     // Update is called once per frame
