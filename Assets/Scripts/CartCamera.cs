@@ -22,7 +22,7 @@ public class CartCamera : MonoBehaviour
         //obstruction = target;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        rotationSpeed = PlayerPrefs.GetFloat("sens");
+        rotationSpeed = 1;
     }
 
     // Update is called once per frame
