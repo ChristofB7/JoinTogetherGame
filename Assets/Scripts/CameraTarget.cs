@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-
-
-
     public GameObject sphere;
     public float turnStrength = 180f;
     private float turnInput;

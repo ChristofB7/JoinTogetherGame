@@ -228,6 +228,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 135728757}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &135728759 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 4141510923042123708, guid: 318d071afbf9fd246bbfdc1286e3132a,
+    type: 3}
+  m_PrefabInstance: {fileID: 135728757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &135728764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5171334452076115172, guid: 318d071afbf9fd246bbfdc1286e3132a,
@@ -570,6 +576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 858756554, guid: f636e1dfbb457774fbb2302f7b79da2c, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 135728759}
     - target: {fileID: 7720112509405690243, guid: f636e1dfbb457774fbb2302f7b79da2c,
         type: 3}
       propertyPath: m_Pivot.x
