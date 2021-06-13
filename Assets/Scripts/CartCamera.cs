@@ -30,7 +30,7 @@ public class CartCamera : MonoBehaviour
         //transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 4.5f);
         CamControl();
         //ViewObstructed();
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             cameraMode = (cameraMode + 1) % 2;
         }

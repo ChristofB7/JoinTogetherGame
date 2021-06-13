@@ -10,10 +10,12 @@ public class CameraTarget : MonoBehaviour
     public GameObject sphere;
     public float turnStrength = 180f;
     private float turnInput;
+    private bool win;
 
     // Start is called before the first frame update
     void Start()
     {
+        win = false;
     }
 
     // Update is called once per frame
