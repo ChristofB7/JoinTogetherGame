@@ -8,7 +8,7 @@ public class CartCamera : MonoBehaviour
     public float zoomSpeed = 1;
     public Transform target;
     float mouseX, mouseY;
-    public Transform obstruction;
+    //public Transform obstruction;
     public LayerMask cameraLayer;
     private int cameraMode = 0;
     public Transform sphere;
@@ -19,7 +19,7 @@ public class CartCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obstruction = target;
+        //obstruction = target;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -29,7 +29,7 @@ public class CartCamera : MonoBehaviour
     {
         //transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 4.5f);
         CamControl();
-        ViewObstructed();
+        //ViewObstructed();
         if (Input.GetKeyDown(KeyCode.Y))
         {
             cameraMode = (cameraMode + 1) % 2;
@@ -63,7 +63,7 @@ public class CartCamera : MonoBehaviour
 
     }
 
-    void ViewObstructed()
+/*    void ViewObstructed()
     {
         RaycastHit hit;
 
@@ -89,5 +89,5 @@ public class CartCamera : MonoBehaviour
                 }         
             }
         }
-    }
+    }*/
 }

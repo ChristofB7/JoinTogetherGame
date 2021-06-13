@@ -6,7 +6,7 @@ public class Dragging : MonoBehaviour
 {
     public GameObject objectAttachedTo;
     public float distance = 20f;
-    public float pullSpeed = 600f;
+    public float pullSpeed = -2.5f;
     public GameObject cam;
 
     private GameObject fake;
@@ -20,11 +20,15 @@ public class Dragging : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        if (Vector3.Distance(objectAttachedTo.transform.position, transform.position) >= distance)
+        float delta = Vector3.Distance(objectAttachedTo.transform.position, transform.position) - distance;
+        if (delta>0)
         {
+            var force = delta * pullSpeed;
+
+            Vector3 direction = objectAttachedTo.transform.position - transform.position;
+
             transform.LookAt(objectAttachedTo.transform);
-            GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * pullSpeed, ForceMode.Force);
+            GetComponent<Rigidbody>().AddForce(direction.normalized * force, ForceMode.Force);
             //transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         }
     }

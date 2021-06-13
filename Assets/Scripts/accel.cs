@@ -13,14 +13,11 @@ public class accel : MonoBehaviour
 
         if (drag == null)
         {
-            drag = FindObjectOfType<Dragging>();
         }
         
         if(collision.gameObject.layer == 11 && Input.GetAxis("Vertical")>0)
         {
             car.forwardAccel += 35f*Time.deltaTime;
-            drag.pullSpeed = 40f;
-            drag.distance = 2f;
         }
     }
 

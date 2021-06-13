@@ -19,6 +19,7 @@ public class GrapplingGun : MonoBehaviour
     private Dragging drag;
     public Image crosshair;
     public Sprite[] sprites;
+    public float pullSpeed = 8f;
 
 
     private void Awake()
@@ -73,12 +74,12 @@ public class GrapplingGun : MonoBehaviour
         {
             Hook(hit);
         }*/
-/*        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, movingLayer))
+        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, movingLayer))
         {
             Drag(hit);
 
-        }*/
-        if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, moveableLayer))
+        }
+        else if(Physics.Raycast(myCam.position, myCam.forward, out hit, maxDistance, moveableLayer))
         {
             myCam.gameObject.GetComponent<AudioListener>().enabled = false;
             
@@ -105,7 +106,7 @@ public class GrapplingGun : MonoBehaviour
 
             drag = sphere.gameObject.AddComponent<Dragging>();
             drag.objectAttachedTo = grappleObject;
-            drag.pullSpeed = 15f;
+            drag.pullSpeed = pullSpeed;
             drag.distance = Vector3.Distance(grappleObject.transform.position, transform.position);
             drag.cam = myCam.gameObject;
         }
