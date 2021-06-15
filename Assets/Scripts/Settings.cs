@@ -30,6 +30,7 @@ public class Settings : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         music.value = PlayerPrefs.GetFloat("Music");
         SFX.value = PlayerPrefs.GetFloat("SFX");
         sens.value = PlayerPrefs.GetFloat("sens");

@@ -544,6 +544,11 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4123476984152673706, guid: c0cef3b5e5442a045936c69db5b32888,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0cef3b5e5442a045936c69db5b32888, type: 3}
 --- !u!114 &4123476983451566236 stripped

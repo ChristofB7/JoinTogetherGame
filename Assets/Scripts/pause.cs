@@ -14,7 +14,7 @@ public class pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Input" + Input.GetKeyDown(KeyCode.Escape));
+        //Debug.Log("Input" + Input.GetKeyDown(KeyCode.Escape));
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PlayerPrefs.SetInt("index", SceneManager.GetActiveScene().buildIndex);

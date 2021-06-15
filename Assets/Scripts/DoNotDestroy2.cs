@@ -14,7 +14,13 @@ public class DoNotDestroy2 : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-
+    private void Start()
+    {
+        if (PlayerPrefs.GetFloat("sens") == 0)
+        {
+            PlayerPrefs.SetFloat("sense", 0.5f);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
